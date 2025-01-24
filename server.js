@@ -3,17 +3,19 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const { processClick, getUserStats, resetGame } = require('./jobs/clickJobs');
 
+require('dotenv').config();
+
 const app = express();
 const PORT = process.env.PORT || 5000;
+const MONGO_URL = process.env.MONGO_URL;
 
-mongoose.connect('mongodb+srv://rohitszx:Test123@cluster0.jl4wr.mongodb.net/clickGame')
+mongoose.connect(MONGO_URL)
   .then(() => {
     console.log('Successfully connected to MongoDB');
   })
   .catch((err) => {
     console.error('MongoDB connection error:', err);
   });
-
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST']
