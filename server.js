@@ -16,10 +16,12 @@ mongoose.connect(MONGO_URL)
   .catch((err) => {
     console.error('MongoDB connection error:', err);
   });
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST']
-}));
+app.use(
+  cors({
+    origin: 'https://cookie-clicker-nf1x.onrender.com', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+  })
+);
 app.use(express.json());
 
 app.post('/api/click', async (req, res) => {
